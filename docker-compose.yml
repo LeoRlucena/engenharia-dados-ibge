@@ -1,1 +1,69 @@
-# Aqui vai o docker-compose.yml para o projeto de microserviços
+services:
+
+  postgres:
+    image: postgres:16
+
+    container_name: ibge_postgres
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ibge_db
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    networks:
+      - ibge_network
+
+  pgadmin:
+    image: dpage/pgadmin4
+
+    container_name: ibge_pgadmin
+
+    restart: always
+
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+
+    ports:
+      - "8080:80"
+
+    depends_on:
+      - postgres
+
+    networks:
+      - ibge_network
+
+  jupyter:
+    image: jupyter/scipy-notebook
+
+    container_name: ibge_jupyter
+
+    restart: always
+
+    ports:
+      - "8888:8888"
+
+    volumes:
+      - ./:/home/jovyan/work 
+
+    environment:
+      JUPYTER_ENABLE_LAB: "yes"
+      JUPYTER_TOKEN: ibge
+
+    depends_on:
+      - postgres
+
+    networks:
+      - ibge_network
+
+networks:
+  ibge_network:
+
+volumes:
+  postgres_data:
