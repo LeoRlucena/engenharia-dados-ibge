@@ -40,7 +40,7 @@ services:
       - ibge_network
 
   jupyter:
-    image: jupyter/scipy-notebook
+    build: .
 
     container_name: ibge_jupyter
 
