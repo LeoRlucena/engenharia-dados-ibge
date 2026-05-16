@@ -17,11 +17,11 @@ Desenvolver um pipeline de engenharia de dados utilizando dados públicos do IBG
 ## Endpoints da API IBGE
 
 ### População
-https://apisidra.ibge.gov.br/values/t/6579/n3/all/v/9324/p/2023?formato=json
+https://apisidra.ibge.gov.br/values/t/6579/n3/all/v/9324/p/2024?formato=json
 
 Retorna:
 - população estimada por estado
-- ano de referência: 2023
+- ano de referência: 2024
 
 ---
 
@@ -146,3 +146,24 @@ Armazena exportações finais em CSV.
 - Comparar regiões brasileiras
 - Relacionar população e desenvolvimento econômico
 - Gerar rankings econômicos
+
+## Camada de Transformação
+
+A etapa de transformação é responsável por converter os JSONs brutos da API do IBGE em tabelas padronizadas para carga no PostgreSQL e consumo posterior nos notebooks.
+
+### Responsabilidades
+- remover metadados retornados pela API SIDRA;
+- padronizar colunas de estados, regiões, população e PIB;
+- calcular PIB per capita;
+- salvar os dados tratados em `data/processed`.
+
+### Saídas esperadas
+- `dim_regiao.csv`
+- `dim_estado.csv`
+- `fato_ibge.csv`
+
+### Fluxo
+1. `src/extract/ibge_api.py` coleta os dados da API e salva os JSONs brutos em `data/raw`.
+2. `src/transform/tratamento.py` limpa e estrutura os dados.
+3. `src/load/postgres_loader.py` grava as tabelas no PostgreSQL.
+4. Os notebooks usam as tabelas já tratadas para análise e visualização.
