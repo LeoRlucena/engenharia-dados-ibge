@@ -1,0 +1,1038 @@
+{
+  "populacao": [
+    {
+      "NC": "Nível Territorial (Código)",
+      "NN": "Nível Territorial",
+      "MC": "Unidade de Medida (Código)",
+      "MN": "Unidade de Medida",
+      "V": "Valor",
+      "D1C": "Unidade da Federação (Código)",
+      "D1N": "Unidade da Federação",
+      "D2C": "Variável (Código)",
+      "D2N": "Variável",
+      "D3C": "Ano (Código)",
+      "D3N": "Ano"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "1746227",
+      "D1C": "11",
+      "D1N": "Rondônia",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "880631",
+      "D1C": "12",
+      "D1N": "Acre",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "4281209",
+      "D1C": "13",
+      "D1N": "Amazonas",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "716793",
+      "D1C": "14",
+      "D1N": "Roraima",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "8664306",
+      "D1C": "15",
+      "D1N": "Pará",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "802837",
+      "D1C": "16",
+      "D1N": "Amapá",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "1577342",
+      "D1C": "17",
+      "D1N": "Tocantins",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "7010960",
+      "D1C": "21",
+      "D1N": "Maranhão",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "3375646",
+      "D1C": "22",
+      "D1N": "Piauí",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "9233656",
+      "D1C": "23",
+      "D1N": "Ceará",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "3446071",
+      "D1C": "24",
+      "D1N": "Rio Grande do Norte",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "4145040",
+      "D1C": "25",
+      "D1N": "Paraíba",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "9539029",
+      "D1C": "26",
+      "D1N": "Pernambuco",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "3220104",
+      "D1C": "27",
+      "D1N": "Alagoas",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "2291077",
+      "D1C": "28",
+      "D1N": "Sergipe",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "14850513",
+      "D1C": "29",
+      "D1N": "Bahia",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "21322691",
+      "D1C": "31",
+      "D1N": "Minas Gerais",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "4102129",
+      "D1C": "32",
+      "D1N": "Espírito Santo",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "17219679",
+      "D1C": "33",
+      "D1N": "Rio de Janeiro",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "45973194",
+      "D1C": "35",
+      "D1N": "São Paulo",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "11824665",
+      "D1C": "41",
+      "D1N": "Paraná",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "8058441",
+      "D1C": "42",
+      "D1N": "Santa Catarina",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "11229915",
+      "D1C": "43",
+      "D1N": "Rio Grande do Sul",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "2901895",
+      "D1C": "50",
+      "D1N": "Mato Grosso do Sul",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "3836399",
+      "D1C": "51",
+      "D1N": "Mato Grosso",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "7350483",
+      "D1C": "52",
+      "D1N": "Goiás",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "45",
+      "MN": "Pessoas",
+      "V": "2982818",
+      "D1C": "53",
+      "D1N": "Distrito Federal",
+      "D2C": "9324",
+      "D2N": "População residente estimada",
+      "D3C": "2024",
+      "D3N": "2024"
+    }
+  ],
+  "pib": [
+    {
+      "NC": "Nível Territorial (Código)",
+      "NN": "Nível Territorial",
+      "MC": "Unidade de Medida (Código)",
+      "MN": "Unidade de Medida",
+      "V": "Valor",
+      "D1C": "Unidade da Federação (Código)",
+      "D1N": "Unidade da Federação",
+      "D2C": "Variável (Código)",
+      "D2N": "Variável",
+      "D3C": "Ano (Código)",
+      "D3N": "Ano"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "76456179",
+      "D1C": "11",
+      "D1N": "Rondônia",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "26291321",
+      "D1C": "12",
+      "D1N": "Acre",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "161794976",
+      "D1C": "13",
+      "D1N": "Amazonas",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "25124805",
+      "D1C": "14",
+      "D1N": "Roraima",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "254546511",
+      "D1C": "15",
+      "D1N": "Pará",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "28020120",
+      "D1C": "16",
+      "D1N": "Amapá",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "64317699",
+      "D1C": "17",
+      "D1N": "Tocantins",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "149227195",
+      "D1C": "21",
+      "D1N": "Maranhão",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "80916856",
+      "D1C": "22",
+      "D1N": "Piauí",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "232239257",
+      "D1C": "23",
+      "D1N": "Ceará",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "101740275",
+      "D1C": "24",
+      "D1N": "Rio Grande do Norte",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "96963174",
+      "D1C": "25",
+      "D1N": "Paraíba",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "270474919",
+      "D1C": "26",
+      "D1N": "Pernambuco",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "89688932",
+      "D1C": "27",
+      "D1N": "Alagoas",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "60816662",
+      "D1C": "28",
+      "D1N": "Sergipe",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "430987853",
+      "D1C": "29",
+      "D1N": "Bahia",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "971977551",
+      "D1C": "31",
+      "D1N": "Minas Gerais",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "209829732",
+      "D1C": "32",
+      "D1N": "Espírito Santo",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "1172871443",
+      "D1C": "33",
+      "D1N": "Rio de Janeiro",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "3444814033",
+      "D1C": "35",
+      "D1N": "São Paulo",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "670919162",
+      "D1C": "41",
+      "D1N": "Paraná",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "513392973",
+      "D1C": "42",
+      "D1N": "Santa Catarina",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "650107022",
+      "D1C": "43",
+      "D1N": "Rio Grande do Sul",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "184402118",
+      "D1C": "50",
+      "D1N": "Mato Grosso do Sul",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "273008586",
+      "D1C": "51",
+      "D1N": "Mato Grosso",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "336746975",
+      "D1C": "52",
+      "D1N": "Goiás",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    },
+    {
+      "NC": "3",
+      "NN": "Unidade da Federação",
+      "MC": "40",
+      "MN": "Mil Reais",
+      "V": "365669108",
+      "D1C": "53",
+      "D1N": "Distrito Federal",
+      "D2C": "37",
+      "D2N": "Produto Interno Bruto a preços correntes",
+      "D3C": "2023",
+      "D3N": "2023"
+    }
+  ],
+  "estados": [
+    {
+      "id": 11,
+      "sigla": "RO",
+      "nome": "Rondônia",
+      "regiao": {
+        "id": 1,
+        "sigla": "N",
+        "nome": "Norte"
+      }
+    },
+    {
+      "id": 12,
+      "sigla": "AC",
+      "nome": "Acre",
+      "regiao": {
+        "id": 1,
+        "sigla": "N",
+        "nome": "Norte"
+      }
+    },
+    {
+      "id": 13,
+      "sigla": "AM",
+      "nome": "Amazonas",
+      "regiao": {
+        "id": 1,
+        "sigla": "N",
+        "nome": "Norte"
+      }
+    },
+    {
+      "id": 14,
+      "sigla": "RR",
+      "nome": "Roraima",
+      "regiao": {
+        "id": 1,
+        "sigla": "N",
+        "nome": "Norte"
+      }
+    },
+    {
+      "id": 15,
+      "sigla": "PA",
+      "nome": "Pará",
+      "regiao": {
+        "id": 1,
+        "sigla": "N",
+        "nome": "Norte"
+      }
+    },
+    {
+      "id": 16,
+      "sigla": "AP",
+      "nome": "Amapá",
+      "regiao": {
+        "id": 1,
+        "sigla": "N",
+        "nome": "Norte"
+      }
+    },
+    {
+      "id": 17,
+      "sigla": "TO",
+      "nome": "Tocantins",
+      "regiao": {
+        "id": 1,
+        "sigla": "N",
+        "nome": "Norte"
+      }
+    },
+    {
+      "id": 21,
+      "sigla": "MA",
+      "nome": "Maranhão",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    },
+    {
+      "id": 22,
+      "sigla": "PI",
+      "nome": "Piauí",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    },
+    {
+      "id": 23,
+      "sigla": "CE",
+      "nome": "Ceará",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    },
+    {
+      "id": 24,
+      "sigla": "RN",
+      "nome": "Rio Grande do Norte",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    },
+    {
+      "id": 25,
+      "sigla": "PB",
+      "nome": "Paraíba",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    },
+    {
+      "id": 26,
+      "sigla": "PE",
+      "nome": "Pernambuco",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    },
+    {
+      "id": 27,
+      "sigla": "AL",
+      "nome": "Alagoas",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    },
+    {
+      "id": 28,
+      "sigla": "SE",
+      "nome": "Sergipe",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    },
+    {
+      "id": 29,
+      "sigla": "BA",
+      "nome": "Bahia",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    },
+    {
+      "id": 31,
+      "sigla": "MG",
+      "nome": "Minas Gerais",
+      "regiao": {
+        "id": 3,
+        "sigla": "SE",
+        "nome": "Sudeste"
+      }
+    },
+    {
+      "id": 32,
+      "sigla": "ES",
+      "nome": "Espírito Santo",
+      "regiao": {
+        "id": 3,
+        "sigla": "SE",
+        "nome": "Sudeste"
+      }
+    },
+    {
+      "id": 33,
+      "sigla": "RJ",
+      "nome": "Rio de Janeiro",
+      "regiao": {
+        "id": 3,
+        "sigla": "SE",
+        "nome": "Sudeste"
+      }
+    },
+    {
+      "id": 35,
+      "sigla": "SP",
+      "nome": "São Paulo",
+      "regiao": {
+        "id": 3,
+        "sigla": "SE",
+        "nome": "Sudeste"
+      }
+    },
+    {
+      "id": 41,
+      "sigla": "PR",
+      "nome": "Paraná",
+      "regiao": {
+        "id": 4,
+        "sigla": "S",
+        "nome": "Sul"
+      }
+    },
+    {
+      "id": 42,
+      "sigla": "SC",
+      "nome": "Santa Catarina",
+      "regiao": {
+        "id": 4,
+        "sigla": "S",
+        "nome": "Sul"
+      }
+    },
+    {
+      "id": 43,
+      "sigla": "RS",
+      "nome": "Rio Grande do Sul",
+      "regiao": {
+        "id": 4,
+        "sigla": "S",
+        "nome": "Sul"
+      }
+    },
+    {
+      "id": 50,
+      "sigla": "MS",
+      "nome": "Mato Grosso do Sul",
+      "regiao": {
+        "id": 5,
+        "sigla": "CO",
+        "nome": "Centro-Oeste"
+      }
+    },
+    {
+      "id": 51,
+      "sigla": "MT",
+      "nome": "Mato Grosso",
+      "regiao": {
+        "id": 5,
+        "sigla": "CO",
+        "nome": "Centro-Oeste"
+      }
+    },
+    {
+      "id": 52,
+      "sigla": "GO",
+      "nome": "Goiás",
+      "regiao": {
+        "id": 5,
+        "sigla": "CO",
+        "nome": "Centro-Oeste"
+      }
+    },
+    {
+      "id": 53,
+      "sigla": "DF",
+      "nome": "Distrito Federal",
+      "regiao": {
+        "id": 5,
+        "sigla": "CO",
+        "nome": "Centro-Oeste"
+      }
+    }
+  ],
+  "regioes": [
+    {
+      "id": 1,
+      "sigla": "N",
+      "nome": "Norte"
+    },
+    {
+      "id": 2,
+      "sigla": "NE",
+      "nome": "Nordeste"
+    },
+    {
+      "id": 3,
+      "sigla": "SE",
+      "nome": "Sudeste"
+    },
+    {
+      "id": 4,
+      "sigla": "S",
+      "nome": "Sul"
+    },
+    {
+      "id": 5,
+      "sigla": "CO",
+      "nome": "Centro-Oeste"
+    }
+  ],
+  "metadata": {
+    "executado_em": "2026-05-17T18:46:46.236099",
+    "ano_populacao": 2024,
+    "ano_pib": 2023
+  }
+}
