@@ -1,9 +1,14 @@
 """ Funções para criação de gráficos """
 
 import os
+import tempfile
 from pathlib import Path
 
-os.environ.setdefault("MPLCONFIGDIR", "/tmp/matplotlib")
+mpl_config_dir = Path(
+    os.environ.get("MPLCONFIGDIR", Path(tempfile.gettempdir()) / "matplotlib")
+)
+mpl_config_dir.mkdir(parents=True, exist_ok=True)
+os.environ["MPLCONFIGDIR"] = str(mpl_config_dir)
 
 import matplotlib.pyplot as plt
 import seaborn as sns
