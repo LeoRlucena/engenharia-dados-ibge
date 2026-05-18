@@ -1,13 +1,31 @@
 """ Funções para criação de gráficos """
 
+import os
+from pathlib import Path
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/matplotlib")
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 sns.set_style('whitegrid')
 
+
+def _finalizar_grafico(output_path=None, show=True):
+    """Salva e/ou exibe a figura atual."""
+    if output_path is not None:
+        path = Path(output_path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        plt.savefig(path, dpi=150, bbox_inches="tight")
+
+    if show:
+        plt.show()
+    else:
+        plt.close()
+
 """ Gráficos de população """
 
-def grafico_populacao_estados(df):
+def grafico_populacao_estados(df, output_path=None, show=True):
     """ Mostra a população dos estados em milhões. """
 
     estados = (
@@ -32,9 +50,9 @@ def grafico_populacao_estados(df):
     plt.ylabel('Estado')
 
     plt.tight_layout()
-    plt.show()
+    _finalizar_grafico(output_path, show)
 
-def grafico_populacao_regiao(df):
+def grafico_populacao_regiao(df, output_path=None, show=True):
     """ População total por região em milhões. """
 
     regioes = (
@@ -61,9 +79,9 @@ def grafico_populacao_regiao(df):
     plt.ylabel('População (milhões)')
 
     plt.tight_layout()
-    plt.show()
+    _finalizar_grafico(output_path, show)
 
-def grafico_percentual_populacao_regiao(df):
+def grafico_percentual_populacao_regiao(df, output_path=None, show=True):
     """ Participação percentual da população por região. """
 
     regioes = (
@@ -88,11 +106,11 @@ def grafico_percentual_populacao_regiao(df):
 
     plt.title('Participação Percentual da População por Região')
 
-    plt.show()
+    _finalizar_grafico(output_path, show)
 
 """ Gráficos de PIB """
 
-def grafico_pib_estados(df):
+def grafico_pib_estados(df, output_path=None, show=True):
     """ PIB dos estados em milhões de reais. """
 
     import matplotlib.pyplot as plt
@@ -131,9 +149,9 @@ def grafico_pib_estados(df):
     plt.ylabel('Estado')
 
     plt.tight_layout()
-    plt.show()
+    _finalizar_grafico(output_path, show)
 
-def grafico_pib_medio_regiao(df):
+def grafico_pib_medio_regiao(df, output_path=None, show=True):
     """ PIB médio por região. """
 
     regioes = (
@@ -144,7 +162,7 @@ def grafico_pib_medio_regiao(df):
     )
 
     regioes['pib_medio_bilhoes'] = (
-        regioes['pib_mil_reais'] / 1_000_000_000
+        regioes['pib_mil_reais'] / 1_000_000
     ).round(1)
 
     plt.figure(figsize=(10, 6))
@@ -160,9 +178,37 @@ def grafico_pib_medio_regiao(df):
     plt.ylabel('PIB Médio (bilhões)')
 
     plt.tight_layout()
-    plt.show()
+    _finalizar_grafico(output_path, show)
 
-def grafico_relacao_populacao_pib(df):
+
+def grafico_ranking_pib_per_capita(df, output_path=None, show=True):
+    """Ranking de PIB per capita por estado."""
+
+    dados = (
+        df[['sigla', 'pib_per_capita', 'nome_regiao']]
+        .copy()
+        .sort_values('pib_per_capita', ascending=True)
+    )
+
+    plt.figure(figsize=(12, 10))
+
+    sns.barplot(
+        data=dados,
+        y='sigla',
+        x='pib_per_capita',
+        hue='nome_regiao',
+        dodge=False
+    )
+
+    plt.title('Ranking de PIB per capita por Estado')
+    plt.xlabel('PIB per capita (R$)')
+    plt.ylabel('Estado')
+    plt.legend(title='Região', loc='lower right')
+
+    plt.tight_layout()
+    _finalizar_grafico(output_path, show)
+
+def grafico_relacao_populacao_pib(df, output_path=None, show=True):
     """ Relação entre população e PIB. """
 
     import matplotlib.pyplot as plt
@@ -206,4 +252,28 @@ def grafico_relacao_populacao_pib(df):
     plt.ylabel('PIB (milhões de reais)')
 
     plt.tight_layout()
-    plt.show()
+    _finalizar_grafico(output_path, show)
+
+
+def gerar_todos_graficos(df, output_dir="data/exports", show=False):
+    """Gera os gráficos principais e salva em PNG."""
+    output = Path(output_dir)
+    output.mkdir(parents=True, exist_ok=True)
+
+    graficos = {
+        "ranking_pib_per_capita.png": grafico_ranking_pib_per_capita,
+        "populacao_estados.png": grafico_populacao_estados,
+        "populacao_regiao.png": grafico_populacao_regiao,
+        "percentual_populacao_regiao.png": grafico_percentual_populacao_regiao,
+        "pib_estados.png": grafico_pib_estados,
+        "pib_medio_regiao.png": grafico_pib_medio_regiao,
+        "relacao_populacao_pib.png": grafico_relacao_populacao_pib,
+    }
+
+    caminhos = []
+    for filename, funcao in graficos.items():
+        path = output / filename
+        funcao(df, output_path=path, show=show)
+        caminhos.append(path)
+
+    return caminhos

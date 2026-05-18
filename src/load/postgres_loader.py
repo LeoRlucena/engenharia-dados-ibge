@@ -9,6 +9,8 @@ from typing import Any, Dict, List
 import pandas as pd
 from sqlalchemy import create_engine, text
 
+from src.transform.tratamento import adicionar_clusterizacao
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -36,7 +38,7 @@ class PostgresLoader:
         return filepath
 
     def _row_params(self, row: pd.Series) -> Dict[str, Any]:
-        return {str(key): value for key, value in row.items()}
+        return {str(key): (None if pd.isna(value) else value) for key, value in row.items()}
 
     def create_tables(self) -> None:
         """Cria as tabelas base do projeto."""
@@ -65,8 +67,23 @@ class PostgresLoader:
                 populacao BIGINT,
                 pib_mil_reais NUMERIC(18,2),
                 pib_per_capita NUMERIC(18,2),
+                ranking_pib_per_capita INTEGER,
+                cluster INTEGER,
+                perfil_cluster VARCHAR(80),
                 data_carga TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
+            """,
+            """
+            ALTER TABLE fato_ibge
+            ADD COLUMN IF NOT EXISTS ranking_pib_per_capita INTEGER
+            """,
+            """
+            ALTER TABLE fato_ibge
+            ADD COLUMN IF NOT EXISTS cluster INTEGER
+            """,
+            """
+            ALTER TABLE fato_ibge
+            ADD COLUMN IF NOT EXISTS perfil_cluster VARCHAR(80)
             """,
             """
             DO $$
@@ -272,6 +289,7 @@ class PostgresLoader:
         merged["pib_per_capita"] = merged["pib_mil_reais"] * 1000 / merged["populacao"]
         merged["ano_populacao"] = ano_populacao
         merged["ano_pib"] = ano_pib
+        merged = adicionar_clusterizacao(merged)
 
         df_final = merged[
             [
@@ -281,6 +299,9 @@ class PostgresLoader:
                 "populacao",
                 "pib_mil_reais",
                 "pib_per_capita",
+                "ranking_pib_per_capita",
+                "cluster",
+                "perfil_cluster",
             ]
         ].copy()
 
@@ -289,6 +310,8 @@ class PostgresLoader:
         df_final["populacao"] = df_final["populacao"].astype("Int64")
         df_final["pib_mil_reais"] = pd.to_numeric(df_final["pib_mil_reais"], errors="coerce")
         df_final["pib_per_capita"] = pd.to_numeric(df_final["pib_per_capita"], errors="coerce")
+        df_final["ranking_pib_per_capita"] = df_final["ranking_pib_per_capita"].astype("Int64")
+        df_final["cluster"] = df_final["cluster"].astype("Int64")
 
         if not df_final.empty:
             with self.engine.begin() as conn:
@@ -302,7 +325,10 @@ class PostgresLoader:
                                 ano_pib,
                                 populacao,
                                 pib_mil_reais,
-                                pib_per_capita
+                                pib_per_capita,
+                                ranking_pib_per_capita,
+                                cluster,
+                                perfil_cluster
                             )
                             VALUES (
                                 :id_estado,
@@ -310,13 +336,19 @@ class PostgresLoader:
                                 :ano_pib,
                                 :populacao,
                                 :pib_mil_reais,
-                                :pib_per_capita
+                                :pib_per_capita,
+                                :ranking_pib_per_capita,
+                                :cluster,
+                                :perfil_cluster
                             )
                             ON CONFLICT (id_estado, ano_populacao, ano_pib)
                             DO UPDATE SET
                                 populacao = EXCLUDED.populacao,
                                 pib_mil_reais = EXCLUDED.pib_mil_reais,
                                 pib_per_capita = EXCLUDED.pib_per_capita,
+                                ranking_pib_per_capita = EXCLUDED.ranking_pib_per_capita,
+                                cluster = EXCLUDED.cluster,
+                                perfil_cluster = EXCLUDED.perfil_cluster,
                                 data_carga = CURRENT_TIMESTAMP
                             """
                         ),
@@ -351,3 +383,39 @@ class PostgresLoader:
             "dim_estado": estados_df,
             "fato_ibge": fato_df,
         }
+
+    def read_table(self, table_name: str) -> pd.DataFrame:
+        """Lê uma tabela inteira do PostgreSQL para um DataFrame."""
+        return pd.read_sql_table(table_name, self.engine)
+
+    def read_query(self, query: str) -> pd.DataFrame:
+        """Executa uma consulta SQL e retorna um DataFrame."""
+        return pd.read_sql(text(query), self.engine)
+
+    def read_indicadores_completos(self) -> pd.DataFrame:
+        """Lê fato, estados e regiões em uma tabela analítica única."""
+        return self.read_query(
+            """
+            SELECT
+                f.id_fato,
+                e.id_estado,
+                e.sigla,
+                e.nome_estado,
+                r.id_regiao,
+                r.sigla_regiao,
+                r.nome_regiao,
+                f.ano_populacao,
+                f.ano_pib,
+                f.populacao,
+                f.pib_mil_reais,
+                f.pib_per_capita,
+                f.ranking_pib_per_capita,
+                f.cluster,
+                f.perfil_cluster,
+                f.data_carga
+            FROM fato_ibge f
+            JOIN dim_estado e ON e.id_estado = f.id_estado
+            LEFT JOIN dim_regiao r ON r.id_regiao = e.id_regiao
+            ORDER BY f.ranking_pib_per_capita NULLS LAST, e.sigla
+            """
+        )

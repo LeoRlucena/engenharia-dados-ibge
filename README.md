@@ -13,6 +13,7 @@ Desenvolver um pipeline de engenharia de dados utilizando dados públicos do IBG
 - Docker Compose
 - Jupyter Notebook
 - Matplotlib
+- Scikit-learn
 
 ## Endpoints da API IBGE
 
@@ -137,14 +138,39 @@ Armazena exportações finais em CSV.
 2. Transformação e limpeza
 3. Armazenamento no PostgreSQL
 4. Análise dos dados
-5. Visualização dos resultados
+5. Visualização dos resultados e clusterização
 6. Exportação CSV
+
+## Como Executar
+
+Subir PostgreSQL, pgAdmin e Jupyter:
+
+```bash
+docker compose up --build postgres pgadmin jupyter
+```
+
+Acessos:
+- Jupyter: `http://localhost:8888`, token `ibge`
+- pgAdmin: `http://localhost:8080`, usuário `admin@admin.com`, senha `admin`
+
+Executar o pipeline completo via Docker:
+
+```bash
+docker compose --profile pipeline run --rm pipeline
+```
+
+Executar localmente sem PostgreSQL, gerando CSVs e gráficos:
+
+```bash
+python -m src.pipeline --skip-db
+```
 
 ## Objetivos Analíticos
 
 - Identificar estados com maior PIB per capita
 - Comparar regiões brasileiras
 - Relacionar população e desenvolvimento econômico
+- Agrupar estados com perfil socioeconômico semelhante usando KMeans
 - Gerar rankings econômicos
 
 ## Camada de Transformação
@@ -155,12 +181,16 @@ A etapa de transformação é responsável por converter os JSONs brutos da API 
 - remover metadados retornados pela API SIDRA;
 - padronizar colunas de estados, regiões, população e PIB;
 - calcular PIB per capita;
+- calcular ranking e cluster socioeconômico;
 - salvar os dados tratados em `data/processed`.
 
 ### Saídas esperadas
 - `dim_regiao.csv`
 - `dim_estado.csv`
 - `fato_ibge.csv`
+- `data/exports/ranking_desenvolvimento.csv`
+- `data/exports/indicadores_regiao.csv`
+- gráficos em PNG em `data/exports/`
 
 ### Fluxo
 1. `src/extract/ibge_api.py` coleta os dados da API e salva os JSONs brutos em `data/raw`.
