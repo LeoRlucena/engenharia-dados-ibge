@@ -16,6 +16,12 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
     networks:
       - ibge_network
 
@@ -52,15 +58,43 @@ services:
     volumes:
       - ./:/home/jovyan/work 
 
+    working_dir: /home/jovyan/work
+
     environment:
       JUPYTER_ENABLE_LAB: "yes"
       JUPYTER_TOKEN: ibge
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@postgres:5432/ibge_db
 
     depends_on:
       - postgres
 
     networks:
       - ibge_network
+
+  pipeline:
+    build: .
+
+    container_name: ibge_pipeline
+
+    profiles:
+      - pipeline
+
+    volumes:
+      - ./:/home/jovyan/work
+
+    working_dir: /home/jovyan/work
+
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@postgres:5432/ibge_db
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    networks:
+      - ibge_network
+
+    command: python -m src.pipeline
 
 networks:
   ibge_network:

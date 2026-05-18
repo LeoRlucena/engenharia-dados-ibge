@@ -6,8 +6,56 @@ from pathlib import Path
 from typing import Any, Dict, List, Union
 
 import pandas as pd
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
 
 JsonType = Union[List[Dict[str, Any]], Dict[str, Any]]
+
+
+def adicionar_clusterizacao(df: pd.DataFrame, n_clusters: int = 4) -> pd.DataFrame:
+    """Adiciona ranking e clusters socioeconomicos a partir de PIB e população."""
+    if df.empty:
+        return df
+
+    colunas = ["populacao", "pib_mil_reais", "pib_per_capita"]
+    faltantes = [coluna for coluna in colunas if coluna not in df.columns]
+    if faltantes:
+        raise ValueError(f"Colunas ausentes para clusterização: {faltantes}")
+
+    resultado = df.copy()
+    resultado["ranking_pib_per_capita"] = (
+        resultado["pib_per_capita"].rank(method="dense", ascending=False).astype(int)
+    )
+
+    features = resultado[colunas].apply(pd.to_numeric, errors="coerce")
+    validos = features.dropna()
+    if len(validos) < 2:
+        resultado["cluster"] = 0
+        resultado["perfil_cluster"] = "perfil_unico"
+        return resultado
+
+    total_clusters = min(n_clusters, len(validos))
+    scaled = StandardScaler().fit_transform(validos)
+    model = KMeans(n_clusters=total_clusters, random_state=42, n_init=10)
+    clusters = pd.Series(model.fit_predict(scaled), index=validos.index)
+
+    resultado["cluster"] = clusters
+    resultado["cluster"] = resultado["cluster"].fillna(-1).astype(int)
+
+    ordem = (
+        resultado[resultado["cluster"] >= 0]
+        .groupby("cluster")["pib_per_capita"]
+        .mean()
+        .sort_values()
+        .reset_index()
+        .reset_index()
+    )
+    ordem["perfil_cluster"] = ordem["index"].map(
+        lambda posicao: f"perfil_{posicao + 1}_por_pib_per_capita"
+    )
+    labels = dict(zip(ordem["cluster"], ordem["perfil_cluster"]))
+    resultado["perfil_cluster"] = resultado["cluster"].map(labels).fillna("sem_cluster")
+    return resultado
 
 
 class TratamentoIBGE:
@@ -203,6 +251,7 @@ class TratamentoIBGE:
             ano_populacao=ano_populacao,
             ano_pib=ano_pib,
         )
+        fato_df = adicionar_clusterizacao(fato_df)
 
         if salvar_csv:
             self._save_csv(regioes_df, "dim_regiao.csv")
