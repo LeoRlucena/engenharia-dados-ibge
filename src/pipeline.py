@@ -77,36 +77,35 @@ def run_pipeline(
     gerar_graficos: bool = True,
 ) -> dict[str, pd.DataFrame]:
     """Executa extração, transformação, carga, leitura, exportação e gráficos."""
-    print("1/5 Extraindo dados da API do IBGE...")
+    print("1/4 Extraindo dados da API do IBGE...")
     client = IBGEAPIClient()
     dados = client.extract_all(ano_populacao=ano_populacao, ano_pib=ano_pib)
 
-    print("2/5 Transformando dados...")
-    tratamento = TratamentoIBGE()
-    dfs = tratamento.pipeline_tratamento(
-        dados,
-        ano_populacao=ano_populacao,
-        ano_pib=ano_pib,
-        salvar_csv=True,
-    )
-
     if skip_db:
+        print("2/4 Transformando dados...")
+        tratamento = TratamentoIBGE()
+        dfs = tratamento.pipeline_tratamento(
+            dados,
+            ano_populacao=ano_populacao,
+            ano_pib=ano_pib,
+            salvar_csv=True,
+        )
         indicadores = montar_indicadores_completos(
             dfs["fato_ibge"],
             dfs["dim_estado"],
             dfs["dim_regiao"],
         )
     else:
-        print("3/5 Carregando e lendo dados no PostgreSQL...")
+        print("2/4 Carregando dados no PostgreSQL...")
         loader = PostgresLoader(connection_string())
-        loader.run_pipeline(dados, ano_populacao=ano_populacao, ano_pib=ano_pib)
+        dfs = loader.run_pipeline(dados, ano_populacao=ano_populacao, ano_pib=ano_pib)
         indicadores = loader.read_indicadores_completos()
 
-    print("4/5 Exportando CSVs finais...")
+    print("3/4 Exportando CSVs finais...")
     exportar_resultados(indicadores)
 
     if gerar_graficos:
-        print("5/5 Gerando gráficos...")
+        print("4/4 Gerando gráficos...")
         gerar_todos_graficos(indicadores)
 
     print("Pipeline concluído.")
