@@ -59,6 +59,9 @@ def exportar_resultados(df: pd.DataFrame, output_dir: str | Path = "data/exports
         encoding="utf-8",
     )
 
+    if "id_regiao" not in df.columns:
+        raise ValueError("Coluna 'id_regiao' ausente para gerar indicadores por região.")
+
     groupby_cols = ["id_regiao"]
     if "sigla_regiao" in df.columns:
         groupby_cols.append("sigla_regiao")
@@ -67,8 +70,15 @@ def exportar_resultados(df: pd.DataFrame, output_dir: str | Path = "data/exports
     if "id_estado" not in df.columns and "codigo_estado" in df.columns:
         df = df.rename(columns={"codigo_estado": "id_estado"})
 
+    sem_dado_regiao = "__sem_dado_regiao__"
+    groupby_source = df
+    if len(groupby_cols) > 1:
+        groupby_source = df.copy()
+        for coluna in groupby_cols[1:]:
+            groupby_source[coluna] = groupby_source[coluna].fillna(sem_dado_regiao)
+
     indicadores_regiao = (
-        df.groupby(groupby_cols, as_index=False, dropna=False)
+        groupby_source.groupby(groupby_cols, as_index=False)
         .agg(
             populacao=("populacao", "sum"),
             pib_mil_reais=("pib_mil_reais", "sum"),
@@ -77,6 +87,8 @@ def exportar_resultados(df: pd.DataFrame, output_dir: str | Path = "data/exports
         )
         .sort_values("pib_per_capita_medio", ascending=False)
     )
+    for coluna in groupby_cols[1:]:
+        indicadores_regiao[coluna] = indicadores_regiao[coluna].replace(sem_dado_regiao, pd.NA)
     if "sigla_regiao" not in indicadores_regiao.columns:
         indicadores_regiao["sigla_regiao"] = pd.NA
     if "nome_regiao" not in indicadores_regiao.columns:
