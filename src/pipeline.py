@@ -40,7 +40,14 @@ def montar_indicadores_completos(
 
 def exportar_resultados(df: pd.DataFrame, output_dir: str | Path = "data/exports") -> dict[str, Path]:
     """Exporta os CSVs finais usados na análise e apresentação."""
-    output = Path(output_dir)
+    # Resolve project root (src is directly under project root -> parents[1])
+    project_root = Path(__file__).resolve().parents[1]
+    out_path = Path(output_dir)
+    # If a relative path is provided, make it relative to the project root
+    if not out_path.is_absolute():
+        output = project_root / out_path
+    else:
+        output = out_path
     output.mkdir(parents=True, exist_ok=True)
 
     ranking_path = output / "ranking_desenvolvimento.csv"
@@ -51,6 +58,16 @@ def exportar_resultados(df: pd.DataFrame, output_dir: str | Path = "data/exports
         index=False,
         encoding="utf-8",
     )
+
+    # Garantir que as colunas de região existam com nomes esperados
+    if "sigla_regiao" not in df.columns and "sigla" in df.columns:
+        df = df.rename(columns={"sigla": "sigla_regiao"})
+    if "sigla_regiao" not in df.columns:
+        df["sigla_regiao"] = None
+    if "nome_regiao" not in df.columns:
+        df["nome_regiao"] = None
+    if "id_estado" not in df.columns and "codigo_estado" in df.columns:
+        df = df.rename(columns={"codigo_estado": "id_estado"})
 
     indicadores_regiao = (
         df.groupby(["id_regiao", "sigla_regiao", "nome_regiao"], as_index=False)

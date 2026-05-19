@@ -19,7 +19,12 @@ sns.set_style('whitegrid')
 def _finalizar_grafico(output_path=None, show=True):
     """Salva e/ou exibe a figura atual."""
     if output_path is not None:
+        # Resolve relative paths against project root to avoid writing into the
+        # current working directory (e.g., notebooks/)
+        project_root = Path(__file__).resolve().parents[2]
         path = Path(output_path)
+        if not path.is_absolute():
+            path = project_root / path
         path.parent.mkdir(parents=True, exist_ok=True)
         plt.savefig(path, dpi=150, bbox_inches="tight")
 
@@ -262,7 +267,12 @@ def grafico_relacao_populacao_pib(df, output_path=None, show=True):
 
 def gerar_todos_graficos(df, output_dir="data/exports", show=False):
     """Gera os gráficos principais e salva em PNG."""
-    output = Path(output_dir)
+    project_root = Path(__file__).resolve().parents[2]
+    out_path = Path(output_dir)
+    if not out_path.is_absolute():
+        output = project_root / out_path
+    else:
+        output = out_path
     output.mkdir(parents=True, exist_ok=True)
 
     graficos = {
