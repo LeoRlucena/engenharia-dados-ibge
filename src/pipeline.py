@@ -40,7 +40,14 @@ def montar_indicadores_completos(
 
 def exportar_resultados(df: pd.DataFrame, output_dir: str | Path = "data/exports") -> dict[str, Path]:
     """Exporta os CSVs finais usados na análise e apresentação."""
-    output = Path(output_dir)
+    # Resolve project root (src is directly under project root -> parents[1])
+    project_root = Path(__file__).resolve().parents[1]
+    out_path = Path(output_dir)
+    # If a relative path is provided, make it relative to the project root
+    if not out_path.is_absolute():
+        output = project_root / out_path
+    else:
+        output = out_path
     output.mkdir(parents=True, exist_ok=True)
 
     ranking_path = output / "ranking_desenvolvimento.csv"
@@ -52,8 +59,26 @@ def exportar_resultados(df: pd.DataFrame, output_dir: str | Path = "data/exports
         encoding="utf-8",
     )
 
+    if "id_regiao" not in df.columns:
+        raise ValueError("Coluna 'id_regiao' ausente para gerar indicadores por região.")
+
+    groupby_cols = ["id_regiao"]
+    if "sigla_regiao" in df.columns:
+        groupby_cols.append("sigla_regiao")
+    if "nome_regiao" in df.columns:
+        groupby_cols.append("nome_regiao")
+    if "id_estado" not in df.columns and "codigo_estado" in df.columns:
+        df = df.rename(columns={"codigo_estado": "id_estado"})
+
+    sem_dado_regiao = "__sem_dado_regiao__"
+    groupby_source = df
+    if len(groupby_cols) > 1:
+        groupby_source = df.copy()
+        for coluna in groupby_cols[1:]:
+            groupby_source[coluna] = groupby_source[coluna].fillna(sem_dado_regiao)
+
     indicadores_regiao = (
-        df.groupby(["id_regiao", "sigla_regiao", "nome_regiao"], as_index=False)
+        groupby_source.groupby(groupby_cols, as_index=False)
         .agg(
             populacao=("populacao", "sum"),
             pib_mil_reais=("pib_mil_reais", "sum"),
@@ -62,6 +87,23 @@ def exportar_resultados(df: pd.DataFrame, output_dir: str | Path = "data/exports
         )
         .sort_values("pib_per_capita_medio", ascending=False)
     )
+    for coluna in groupby_cols[1:]:
+        indicadores_regiao[coluna] = indicadores_regiao[coluna].replace(sem_dado_regiao, pd.NA)
+    if "sigla_regiao" not in indicadores_regiao.columns:
+        indicadores_regiao["sigla_regiao"] = pd.NA
+    if "nome_regiao" not in indicadores_regiao.columns:
+        indicadores_regiao["nome_regiao"] = pd.NA
+    indicadores_regiao = indicadores_regiao[
+        [
+            "id_regiao",
+            "sigla_regiao",
+            "nome_regiao",
+            "populacao",
+            "pib_mil_reais",
+            "pib_per_capita_medio",
+            "quantidade_estados",
+        ]
+    ]
     indicadores_regiao.to_csv(regioes_path, index=False, encoding="utf-8")
 
     return {
